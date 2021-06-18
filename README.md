@@ -1,3 +1,5 @@
+!https://img.shields.io/github/downloads/lbrenman/api-builder-plugin-comprehend-sdk/total
+
 # API Builder Plugin for AWS Comprehend for NLP
 
 [**Axway API Builder**](https://docs.axway.com/bundle/API_Builder_4x_allOS_en/page/api_builder.html) flow-node that implements [**AWS Comprehend**](https://docs.aws.amazon.com/comprehend/index.html) for Natural Language Processing ([**NLP**](https://en.wikipedia.org/wiki/Natural_language_processing)): *api-builder-plugin-comprehend-sdk*.
