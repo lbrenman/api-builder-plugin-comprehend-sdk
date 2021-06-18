@@ -7,7 +7,7 @@ flow-nodes:
     methods:
       detectSentiment: # This same key is used in `actions.js`
         name: Detect Sentiment
-        description: Generates a greeting.
+        description: Detect sentiment.
         parameters:
           LanguageCode:
             name: LanguageCode
@@ -37,6 +37,32 @@ flow-nodes:
         throws:
           name: Error
           description: An unexpected error was encountered retrieving the sentiment.
+          context: $.sentimentError
+          schema:
+            type: object
+      detectDominantLanguage: # This same key is used in `actions.js`
+        name: Detect Dominant Language
+        description: Detect dominant language.
+        parameters:
+          Text:
+            name: Text
+            description: A UTF-8 text string you want to detect the dominant language of. The string must contain fewer that 5,000 bytes of UTF-8 encoded characters.
+            required: true
+            initialType: string
+            schema:
+              type: string
+              example: Bob lives in Seattle. He is a software engineer at Axway.
+        # "Next" (next) output
+        returns:
+          name: Next
+          description: The dominant language retreived successfully.
+          context: $.sentimentResponse
+          schema:
+            type: object
+        # "Error" (error) output
+        throws:
+          name: Error
+          description: An unexpected error was encountered retrieving the dominant language.
           context: $.sentimentError
           schema:
             type: object

@@ -5,6 +5,9 @@ AWS.config.update({region: 'us-east-1'});
 const comprehend = new AWS.Comprehend();
 const detectSentimentAsync = util.promisify(comprehend.detectSentiment)
     .bind(comprehend);
+const detectDominantLanguageAsync = util.promisify(comprehend.detectDominantLanguage)
+    .bind(comprehend);
+
 /**
  * Action method.
  *
@@ -36,6 +39,19 @@ async function detectSentiment(params, options) {
         LanguageCode
     });
 }
+
+async function detectDominantLanguage(params, options) {
+    const { Text } = params;
+    const { logger } = options;
+    if (!Text) {
+        throw new Error('Missing required parameter: Text');
+    }
+    return detectDominantLanguageAsync({
+        Text
+    });
+}
+
 module.exports = {
-    detectSentiment
+    detectSentiment,
+    detectDominantLanguage
 };
