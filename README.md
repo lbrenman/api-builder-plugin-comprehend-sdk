@@ -1,4 +1,4 @@
-!https://img.shields.io/github/downloads/lbrenman/api-builder-plugin-comprehend-sdk/total
+![](https://img.shields.io/github/downloads/lbrenman/api-builder-plugin-comprehend-sdk/total)
 
 # API Builder Plugin for AWS Comprehend for NLP
 
