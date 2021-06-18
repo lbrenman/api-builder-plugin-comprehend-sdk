@@ -1,0 +1,39 @@
+flow-nodes:
+  comprehend-sdk:
+    name: Comprehend-SDK
+    icon: amazon-comprehend.svg
+    description: AWS Comprehend SDK Flow Node to Expose Comprehend NLP methods
+    category: NLP
+    methods:
+      detectSentiment: # This same key is used in `actions.js`
+        name: Detect Sentiment
+        description: Generates a greeting.
+        parameters:
+          LanguageCode:
+            name: LanguageCode
+            description: The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend (en | es | fr | de | it | pt | ar | hi | ja | ko | zh | zh-TW). Defaults to English.
+            required: false
+            initialType: string
+            schema:
+              type: string
+          Text:
+            name: Text
+            description: A UTF-8 text string you want to detect the sentiment of. The string must contain fewer that 5,000 bytes of UTF-8 encoded characters.
+            required: true
+            initialType: string
+            schema:
+              type: string
+        # "Next" (next) output
+        returns:
+          name: Next
+          description: The operation was successful.
+          context: $.sentimentResponse
+          schema:
+            type: object
+        # "Error" (error) output
+        throws:
+          name: Error
+          description: An unexpected error was encountered.
+          context: $.sentimentError
+          schema:
+            type: object
