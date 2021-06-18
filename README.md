@@ -16,3 +16,8 @@ npm install api-builder-plugin-comprehend-sdk
 ```
 
 > Note that this command will install from npm. If you want to install locally, then provide the full path to the plugin folder
+
+Before launching your API Builder app that uses this plugin, you must set the following two environment variables as per the [**AWS SDK for JavaScript online docs**](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/loading-node-credentials-environment.html):
+
+* AWS_ACCESS_KEY_ID
+* AWS_SECRET_ACCESS_KEY

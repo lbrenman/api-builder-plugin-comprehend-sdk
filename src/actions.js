@@ -7,6 +7,8 @@ const detectSentimentAsync = util.promisify(comprehend.detectSentiment)
     .bind(comprehend);
 const detectDominantLanguageAsync = util.promisify(comprehend.detectDominantLanguage)
     .bind(comprehend);
+const detectPiiEntitiesAsync = util.promisify(comprehend.detectPiiEntities)
+    .bind(comprehend);
 
 /**
  * Action method.
@@ -51,7 +53,20 @@ async function detectDominantLanguage(params, options) {
     });
 }
 
+async function detectPiiEntities(params, options) {
+    const { LanguageCode = 'en', Text } = params;
+    const { logger } = options;
+    if (!Text) {
+        throw new Error('Missing required parameter: Text');
+    }
+    return detectPiiEntitiesAsync({
+        Text,
+        LanguageCode
+    });
+}
+
 module.exports = {
     detectSentiment,
-    detectDominantLanguage
+    detectDominantLanguage,
+    detectPiiEntities
 };

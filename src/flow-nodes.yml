@@ -56,13 +56,48 @@ flow-nodes:
         returns:
           name: Next
           description: The dominant language retreived successfully.
-          context: $.sentimentResponse
+          context: $.dominantLanguageResponse
           schema:
             type: object
         # "Error" (error) output
         throws:
           name: Error
           description: An unexpected error was encountered retrieving the dominant language.
-          context: $.sentimentError
+          context: $.dominantLanguageError
+          schema:
+            type: object
+      detectPiiEntities: # This same key is used in `actions.js`
+        name: Detect PII
+        description: Detect personally identifiable information.
+        parameters:
+          LanguageCode:
+            name: LanguageCode
+            description: The language of the input text. You can specify any of the primary languages supported by Amazon Comprehend (en | es | fr | de | it | pt | ar | hi | ja | ko | zh | zh-TW).
+            required: false
+            initialType: string
+            schema:
+              type: string
+              default: en
+              example: es
+          Text:
+            name: Text
+            description: A UTF-8 text string you want to detect for PII entities. The string must contain fewer that 5,000 bytes of UTF-8 encoded characters.
+            required: true
+            initialType: string
+            schema:
+              type: string
+              example: Hello Paulo Santos. The latest statement for your credit card account 1111-0000-1111-0000 was mailed to 123 Any Street, Seattle, WA 98109.
+        # "Next" (next) output
+        returns:
+          name: Next
+          description: The PII entities retreived successfully.
+          context: $.piiEntitiesResponse
+          schema:
+            type: object
+        # "Error" (error) output
+        throws:
+          name: Error
+          description: An unexpected error was encountered retrieving the sentiment.
+          context: $.piiEntitiesError
           schema:
             type: object
