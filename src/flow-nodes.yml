@@ -11,11 +11,13 @@ flow-nodes:
         parameters:
           LanguageCode:
             name: LanguageCode
-            description: The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend (en | es | fr | de | it | pt | ar | hi | ja | ko | zh | zh-TW). Defaults to English.
+            description: The language of the input text. You can specify any of the primary languages supported by Amazon Comprehend (en | es | fr | de | it | pt | ar | hi | ja | ko | zh | zh-TW).
             required: false
             initialType: string
             schema:
               type: string
+              default: en
+              example: es
           Text:
             name: Text
             description: A UTF-8 text string you want to detect the sentiment of. The string must contain fewer that 5,000 bytes of UTF-8 encoded characters.
@@ -23,17 +25,18 @@ flow-nodes:
             initialType: string
             schema:
               type: string
+              example: Today is my birthday, I am so happy.
         # "Next" (next) output
         returns:
           name: Next
-          description: The operation was successful.
+          description: The sentiment retreived successfully.
           context: $.sentimentResponse
           schema:
             type: object
         # "Error" (error) output
         throws:
           name: Error
-          description: An unexpected error was encountered.
+          description: An unexpected error was encountered retrieving the sentiment.
           context: $.sentimentError
           schema:
             type: object
