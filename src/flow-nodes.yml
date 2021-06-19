@@ -33,6 +33,30 @@ flow-nodes:
           context: $.sentimentResponse
           schema:
             type: object
+            properties:
+              Sentiment:
+                type: string
+                description: The sentiment (POSITIVE, NEGATIVE, NEUTRAL, MIXED)
+                example: POSITIVE
+              SentimentScore:
+                type: object
+                properties:
+                  Positive:
+                    type: number
+                    description: Confidence level
+                    example: 0.9869875907897949
+                  Negative:
+                    type: number
+                    description: Confidence level
+                    example: 0.0010949420975521207
+                  Mixed:
+                    type: number
+                    description: Confidence level
+                    example: 0.0033542951568961143
+                  Neutral:
+                    type: number
+                    description: Confidence level
+                    example: 0.008563132025301456
         # "Error" (error) output
         throws:
           name: Error
@@ -59,6 +83,18 @@ flow-nodes:
           context: $.dominantLanguageResponse
           schema:
             type: object
+            properties:
+              Languages:
+                type: array
+                items:
+                  LanguageCode:
+                    type: string
+                    description: The language detected
+                    example: es
+                  Score:
+                    type: number
+                    description: Confidence level
+                    example: 0.9774383902549744
         # "Error" (error) output
         throws:
           name: Error
@@ -67,7 +103,7 @@ flow-nodes:
           schema:
             type: object
       detectPiiEntities: # This same key is used in `actions.js`
-        name: Detect PII
+        name: Detect PII Entities
         description: Detect personally identifiable information.
         parameters:
           LanguageCode:
@@ -94,6 +130,26 @@ flow-nodes:
           context: $.piiEntitiesResponse
           schema:
             type: object
+            properties:
+              Entities:
+                type: array
+                items:
+                  Type:
+                    type: string
+                    description: The entity's type (BANK_ACCOUNT_NUMBER, BANK_ROUTING, CREDIT_DEBIT_NUMBER, SSN, ...)
+                    example: PASSWORD
+                  Score:
+                    type: number
+                    description: Confidence level
+                    example: 0.9774383902549744
+                  BeginOffset:
+                    type: number
+                    description: A character offset in the input text that shows where the PII entity begins (the first character is at position 0).
+                    example: 11
+                  EndOffset:
+                    type: number
+                    description: A character offset in the input text that shows where the PII entity ends.
+                    example: 22
         # "Error" (error) output
         throws:
           name: Error
