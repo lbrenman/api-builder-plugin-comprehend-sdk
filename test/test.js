@@ -25,6 +25,7 @@ describe('flow-node comprehend-sdk', () => {
 			expect(flowNode.icon).to.be.a('string');
 			expect(flowNode.getMethods()).to.deep.equal([
 				'detectDominantLanguage',
+				'detectEntities',
 				'detectPiiEntities',
 				'detectSentiment'
 			]);
@@ -96,6 +97,26 @@ describe('flow-node comprehend-sdk', () => {
 			const { value, output } = await flowNode.detectPiiEntities({ Text: 'Hello Paulo Santos. The latest statement for your credit card account 1111-0000-1111-0000 was mailed to 123 Any Street, Seattle, WA 98109.' });
 
 			expect(value.Entities[0].Type).to.equal('NAME');
+			expect(output).to.equal('next');
+		});
+	});
+
+	describe('#detectEntities', () => {
+		it('should error when missing required parameter', async () => {
+			// Invoke #detectSentiment without a Text input and check error.
+			const { value, output } = await flowNode.detectEntities({
+				Text: null
+			});
+
+			expect(value).to.be.instanceOf(Error)
+				.and.to.have.property('message', 'Missing required parameter: Text');
+			expect(output).to.equal('error');
+		});
+
+		it('should succeed with valid argument', async () => {
+			const { value, output } = await flowNode.detectEntities({ Text: 'John moved to 1313 Mockingbird Lane in 2012.' });
+
+			expect(value.Entities[0].Type).to.equal('PERSON');
 			expect(output).to.equal('next');
 		});
 	});

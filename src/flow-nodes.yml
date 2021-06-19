@@ -104,7 +104,7 @@ flow-nodes:
             type: object
       detectPiiEntities: # This same key is used in `actions.js`
         name: Detect PII Entities
-        description: Detect personally identifiable information.
+        description: Detect personally identifiable information entities.
         parameters:
           LanguageCode:
             name: LanguageCode
@@ -153,7 +153,62 @@ flow-nodes:
         # "Error" (error) output
         throws:
           name: Error
-          description: An unexpected error was encountered retrieving the sentiment.
+          description: An unexpected error was encountered retrieving the PII entities.
           context: $.piiEntitiesError
+          schema:
+            type: object
+      detectEntities: # This same key is used in `actions.js`
+        name: Detect Entities
+        description: Detect entities.
+        parameters:
+          LanguageCode:
+            name: LanguageCode
+            description: The language of the input text. You can specify any of the primary languages supported by Amazon Comprehend (en | es | fr | de | it | pt | ar | hi | ja | ko | zh | zh-TW).
+            required: false
+            initialType: string
+            schema:
+              type: string
+              default: en
+              example: es
+          Text:
+            name: Text
+            description: A UTF-8 text string you want to detect for entities. The string must contain fewer that 5,000 bytes of UTF-8 encoded characters.
+            required: true
+            initialType: string
+            schema:
+              type: string
+              example: John moved to 1313 Mockingbird Lane in 2012.
+        # "Next" (next) output
+        returns:
+          name: Next
+          description: The entities retreived successfully.
+          context: $.entitiesResponse
+          schema:
+            type: object
+            properties:
+              Entities:
+                type: array
+                items:
+                  Type:
+                    type: string
+                    description: The entity's type (COMMERCIAL_ITEM, DATE, EVENT, LOCATION, ORGANIZATION, ...)
+                    example: DATE
+                  Score:
+                    type: number
+                    description: Confidence level
+                    example: 0.9774383902549744
+                  BeginOffset:
+                    type: number
+                    description: A character offset in the input text that shows where the entity begins (the first character is at position 0).
+                    example: 11
+                  EndOffset:
+                    type: number
+                    description: A character offset in the input text that shows where the entity ends.
+                    example: 22
+        # "Error" (error) output
+        throws:
+          name: Error
+          description: An unexpected error was encountered retrieving the entities.
+          context: $.entitiesError
           schema:
             type: object

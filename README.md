@@ -108,3 +108,56 @@ Text = "Hello Paulo Santos. The latest statement for your credit card account 11
     ]
 }
 ```
+
+### detectEntities
+
+AWS docs are [**here**](https://docs.aws.amazon.com/comprehend/latest/dg/API_DetectEntities.html)
+
+Provide the *Text* input and the optional *LanguageCode* and the output will be similar to below:
+
+Text = "Bob ordered two sandwiches and three ice cream cones today from a store in Seattle."
+
+```
+
+    {
+    "Entities": [
+        {
+            "Text": "Bob",
+            "Score": 1.0,
+            "Type": "PERSON",
+            "BeginOffset": 0,
+            "EndOffset": 3
+        },
+        {
+            "Text": "two",
+            "Score": 1.0,
+            "Type": "QUANTITY",
+            "BeginOffset": 12,
+            "EndOffset": 15
+        },
+        {
+            "Text": "three",
+            "Score": 1.0,
+            "Type": "QUANTITY",
+            "BeginOffset": 32,
+            "EndOffset": 37
+        },
+        {
+            "Text": "Today",
+            "Score": 1.0,
+            "Type": "DATE",
+            "BeginOffset": 54,
+            "EndOffset": 59
+        },
+        {
+            "Text": "Seattle",
+            "Score": 1.0,
+            "Type": "LOCATION",
+            "BeginOffset": 76,
+            "EndOffset": 83
+        }
+    ],
+}
+
+        
+```
