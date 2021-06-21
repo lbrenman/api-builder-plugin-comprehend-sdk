@@ -9,8 +9,8 @@ const detectDominantLanguageAsync = util.promisify(comprehend.detectDominantLang
     .bind(comprehend);
 const detectPiiEntitiesAsync = util.promisify(comprehend.detectPiiEntities)
     .bind(comprehend);
-    const detectEntitiesAsync = util.promisify(comprehend.detectEntities)
-        .bind(comprehend);
+const detectEntitiesAsync = util.promisify(comprehend.detectEntities)
+    .bind(comprehend);
 
 /**
  * Action method.
