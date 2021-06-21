@@ -11,13 +11,25 @@ flow-nodes:
         parameters:
           LanguageCode:
             name: LanguageCode
-            description: The language of the input text. You can specify any of the primary languages supported by Amazon Comprehend (en | es | fr | de | it | pt | ar | hi | ja | ko | zh | zh-TW).
+            description: The language of the input text. You can specify any of the primary languages supported by Amazon Comprehend.
             required: false
             initialType: string
             schema:
               type: string
               default: en
-              example: es
+              enum:
+              - en
+              - es
+              - fr
+              - de
+              - it
+              - pt
+              - ar
+              - hi
+              - ja
+              - ko
+              - zh
+              - zh-TW
           Text:
             name: Text
             description: A UTF-8 text string you want to detect the sentiment of. The string must contain fewer that 5,000 bytes of UTF-8 encoded characters.
@@ -36,8 +48,12 @@ flow-nodes:
             properties:
               Sentiment:
                 type: string
-                description: The sentiment (POSITIVE, NEGATIVE, NEUTRAL, MIXED)
-                example: POSITIVE
+                description: The sentiment
+                enum:
+                - POSITIVE
+                - NEGATIVE
+                - NEUTRAL
+                - MIXED
               SentimentScore:
                 type: object
                 properties:
@@ -87,14 +103,28 @@ flow-nodes:
               Languages:
                 type: array
                 items:
-                  LanguageCode:
-                    type: string
-                    description: The language detected
-                    example: es
-                  Score:
-                    type: number
-                    description: Confidence level
-                    example: 0.9774383902549744
+                  type: object
+                  properties:
+                    LanguageCode:
+                      type: string
+                      description: The language detected
+                      enum:
+                      - en
+                      - es
+                      - fr
+                      - de
+                      - it
+                      - pt
+                      - ar
+                      - hi
+                      - ja
+                      - ko
+                      - zh
+                      - zh-TW
+                    Score:
+                      type: number
+                      description: Confidence level
+                      example: 0.9774383902549744
         # "Error" (error) output
         throws:
           name: Error
@@ -114,7 +144,19 @@ flow-nodes:
             schema:
               type: string
               default: en
-              example: es
+              enum:
+              - en
+              - es
+              - fr
+              - de
+              - it
+              - pt
+              - ar
+              - hi
+              - ja
+              - ko
+              - zh
+              - zh-TW
           Text:
             name: Text
             description: A UTF-8 text string you want to detect for PII entities. The string must contain fewer that 5,000 bytes of UTF-8 encoded characters.
@@ -134,22 +176,24 @@ flow-nodes:
               Entities:
                 type: array
                 items:
-                  Type:
-                    type: string
-                    description: The entity's type (BANK_ACCOUNT_NUMBER, BANK_ROUTING, CREDIT_DEBIT_NUMBER, SSN, ...)
-                    example: PASSWORD
-                  Score:
-                    type: number
-                    description: Confidence level
-                    example: 0.9774383902549744
-                  BeginOffset:
-                    type: number
-                    description: A character offset in the input text that shows where the PII entity begins (the first character is at position 0).
-                    example: 11
-                  EndOffset:
-                    type: number
-                    description: A character offset in the input text that shows where the PII entity ends.
-                    example: 22
+                  type: object
+                  properties:
+                    Type:
+                      type: string
+                      description: The entity's type (BANK_ACCOUNT_NUMBER, BANK_ROUTING, CREDIT_DEBIT_NUMBER, SSN, ...)
+                      example: PASSWORD
+                    Score:
+                      type: number
+                      description: Confidence level
+                      example: 0.9774383902549744
+                    BeginOffset:
+                      type: number
+                      description: A character offset in the input text that shows where the PII entity begins (the first character is at position 0).
+                      example: 11
+                    EndOffset:
+                      type: number
+                      description: A character offset in the input text that shows where the PII entity ends.
+                      example: 22
         # "Error" (error) output
         throws:
           name: Error
@@ -169,7 +213,19 @@ flow-nodes:
             schema:
               type: string
               default: en
-              example: es
+              enum:
+              - en
+              - es
+              - fr
+              - de
+              - it
+              - pt
+              - ar
+              - hi
+              - ja
+              - ko
+              - zh
+              - zh-TW
           Text:
             name: Text
             description: A UTF-8 text string you want to detect for entities. The string must contain fewer that 5,000 bytes of UTF-8 encoded characters.
@@ -189,22 +245,24 @@ flow-nodes:
               Entities:
                 type: array
                 items:
-                  Type:
-                    type: string
-                    description: The entity's type (COMMERCIAL_ITEM, DATE, EVENT, LOCATION, ORGANIZATION, ...)
-                    example: DATE
-                  Score:
-                    type: number
-                    description: Confidence level
-                    example: 0.9774383902549744
-                  BeginOffset:
-                    type: number
-                    description: A character offset in the input text that shows where the entity begins (the first character is at position 0).
-                    example: 11
-                  EndOffset:
-                    type: number
-                    description: A character offset in the input text that shows where the entity ends.
-                    example: 22
+                  type: object
+                  properties:
+                    Type:
+                      type: string
+                      description: The entity's type (COMMERCIAL_ITEM, DATE, EVENT, LOCATION, ORGANIZATION, ...)
+                      example: DATE
+                    Score:
+                      type: number
+                      description: Confidence level
+                      example: 0.9774383902549744
+                    BeginOffset:
+                      type: number
+                      description: A character offset in the input text that shows where the entity begins (the first character is at position 0).
+                      example: 11
+                    EndOffset:
+                      type: number
+                      description: A character offset in the input text that shows where the entity ends.
+                      example: 22
         # "Error" (error) output
         throws:
           name: Error
