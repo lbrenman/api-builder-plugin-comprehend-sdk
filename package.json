@@ -1,6 +1,6 @@
 {
 	"name": "api-builder-plugin-comprehend-sdk",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"description": "A plugin for Axway API Builder",
 	"author": "",
 	"license": "ISC",

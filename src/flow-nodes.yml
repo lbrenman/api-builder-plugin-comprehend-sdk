@@ -180,8 +180,31 @@ flow-nodes:
                   properties:
                     Type:
                       type: string
-                      description: The entity's type (BANK_ACCOUNT_NUMBER, BANK_ROUTING, CREDIT_DEBIT_NUMBER, SSN, ...)
-                      example: PASSWORD
+                      description: The entity's type
+                      enum:
+                      - BANK_ACCOUNT_NUMBER
+                      - BANK_ROUTING
+                      - CREDIT_DEBIT_NUMBER
+                      - CREDIT_DEBIT_CVV
+                      - CREDIT_DEBIT_EXPIRY
+                      - PIN
+                      - EMAIL
+                      - ADDRESS
+                      - NAME
+                      - PHONE
+                      - SSN
+                      - DATE_TIME
+                      - PASSPORT_NUMBER
+                      - DRIVER_ID
+                      - URL
+                      - AGE
+                      - USERNAME
+                      - PASSWORD
+                      - AWS_ACCESS_KEY
+                      - AWS_SECRET_KEY
+                      - IP_ADDRESS
+                      - MAC_ADDRESS
+                      - ALL
                     Score:
                       type: number
                       description: Confidence level
@@ -249,8 +272,17 @@ flow-nodes:
                   properties:
                     Type:
                       type: string
-                      description: The entity's type (COMMERCIAL_ITEM, DATE, EVENT, LOCATION, ORGANIZATION, ...)
-                      example: DATE
+                      description: The entity's type
+                      enum:
+                      - PERSON
+                      - LOCATION
+                      - ORGANIZATION
+                      - COMMERCIAL_ITEM
+                      - EVENT
+                      - DATE
+                      - QUANTITY
+                      - TITLE
+                      - OTHER
                     Score:
                       type: number
                       description: Confidence level
