@@ -2,6 +2,13 @@
 
 [**Axway API Builder**](https://docs.axway.com/bundle/API_Builder_4x_allOS_en/page/api_builder.html) flow-node that implements [**AWS Comprehend**](https://docs.aws.amazon.com/comprehend/index.html) for Natural Language Processing ([**NLP**](https://en.wikipedia.org/wiki/Natural_language_processing)): *api-builder-plugin-comprehend-sdk*.
 
+Methods implemented:
+
+* detectDominantLanguage
+* detectEntities
+* detectPiiEntities
+* detectSentiment
+
 ## About flow-nodes
 
 Flow-nodes are used within Axway API Builder's flow editor that is a low-code / no-code solution to designing and developing services
@@ -159,5 +166,5 @@ Text = "Bob ordered two sandwiches and three ice cream cones today from a store 
     ],
 }
 
-        
+
 ```
